@@ -68,29 +68,43 @@ askFavNumber(10);
 
 
 function askStatesWorked(){
-  var statesAnswer = prompt('Do you remember one of the states that I worked ?');
-  console.log('statesAnswer:', statesAnswer);
-  var correctStatesAnswerFlag = false;    
-  for (var i = 0; i < statesWorked.length; i++) {
-    console.log('current iteration:', statesWorked[i]);
-    if (statesAnswer === statesWorked[i]) {
-      alert('you got it right!');
-      correctStatesAnswerFlag = true;
-      correctAnswersCounter++;
-      break;
+
+  var correctStatesAnswerFlag = false;
+  var attempts = 0;
+
+  while (!correctStatesAnswerFlag && attempts < 3) {
+
+    console.log('attempts:', attempts);
+    console.log('correctStatesAnswerFlag:', correctStatesAnswerFlag);
+
+    var statesAnswer = prompt('Do you remember one of the states that I worked ?');
+    console.log('statesAnswer:', statesAnswer);
+    for (var i = 0; i < statesWorked.length; i++) {
+      console.log('current iteration:', statesWorked[i]);
+      if (statesAnswer === statesWorked[i]) {
+        alert('you got it right!');
+        correctStatesAnswerFlag = true;
+        correctAnswersCounter++;
+        break;
+      }
     }
+    if (!correctStatesAnswerFlag) {
+      alert('incorrect guess ');
+    }
+    attempts++;
+    console.log('attempts:', attempts);
+    console.log('correctStatesAnswerFlag:', correctStatesAnswerFlag);
   }
   if (!correctStatesAnswerFlag) {
-    alert('incorrect guess ');
     incorrectAnswersCounter++;
-  } 
+  }
 }
 var statesWorked = ['washington', 'oregon', 'arkansas', 'california', 'tennessee' ];
 askStatesWorked(statesWorked);
 
 
-console.log("correctAnswersCounter:", correctAnswersCounter);
-console.log("incorrectAnswersCounter:", incorrectAnswersCounter);
+console.log('correctAnswersCounter:', correctAnswersCounter);
+console.log('incorrectAnswersCounter:', incorrectAnswersCounter);
 
 alert('You have answered  ' + correctAnswersCounter + ' questions correctly and ' + incorrectAnswersCounter +' questions incorrectly.');
 alert('Once again Thank you for visiting my page!!! Have a great day!');
